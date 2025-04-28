@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deepfake Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Deepfake Detection System</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Prediction Result:</h2>
+                <p><strong>{{ prediction }}</strong></p>
+            </div>
+        {% endif %}
+
+        {% if filename %}
+            <div class="uploaded-image">
+                <h3>Uploaded Image:</h3>
+                <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" width="300">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
